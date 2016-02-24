@@ -1,0 +1,130 @@
+\documentclass[margin]{res}
+
+% TODO: Follow advice from https://tex.stackexchange.com/questions/440270/how-to-get-pdftex-to-have-same-pdf-output-for-each-run-on-the-same-input
+% But my pdflatex is not recent enough
+
+\PassOptionsToPackage{svgnames}{xcolor}
+\usepackage[object=vectorian]{pgfornament}
+\usepackage{lipsum, tikz, url, tabularx}
+
+\topmargin = -0.5in
+\addtolength{\oddsidemargin}{-.10in}
+\setlength{\textheight}{11in} % increase text height to fit resume on 1 page
+
+%% tex.stackexchange.com/questions/32711/totally-sweet-horizontal-rules-in-latex
+\newcommand{\sweetline}[1]{
+	\setlength{\parskip}{1.5ex}
+	\nointerlineskip
+	\hspace{\fill}
+	\resizebox{0.33\linewidth}{1.25ex}
+	{
+    	\begin{tikzpicture}
+			\node (C) at (0,0) {};
+			\node (D) at (9,0) {};
+			\path (C) to [ornament=#1] (D);
+		\end{tikzpicture}
+	}
+	\hspace{\fill}
+	\par
+	\nointerlineskip
+}
+
+\newcommand{\Sharp}{\nolinebreak\hspace{-.05em}\raisebox{.6ex}{\scriptsize\bf \#}}
+\usepackage{enumitem}
+
+\newcommand{\sex}[1]{\section{\fontsize{13}{13}\selectfont{#1}}}
+
+\newcommand{\tit}[1]{{
+	\fontsize{11}{12}
+	\selectfont
+	\textbf{#1}
+}}
+
+\newcommand{\vs}[0]{\vspace{2px}}
+
+\newenvironment{noindlist}
+	{\begin{list}{}{
+		\labelsep=0em \labelwidth=0em \leftmargin=0em \itemindent=0em
+		\itemsep=3pt
+	}}
+	{\end{list}}
+
+\begin{document}
+
+{\centering
+	\LARGE{Andy Hanson} \normalsize \\
+	\url{andy-hanson.com} \quad \url{andy-hanson@protonmail.com} \quad (703) 402-2284 \\
+}
+
+
+\begin{resume}
+
+%\sweetline{82}
+
+\sex{work}
+	\tit{Microsoft}, Redmond, WA \enspace \emph{Software Engineer II} \hfill \textsf{May 2016-present} \\
+	Resolved issues in the TypeScript compiler and language services such as go-to-definition, find-all-references, completions, code fixes, and suggestions. Fixed bugs and updated services to work in more situations and with new language features. \\
+	Wrote types-publisher, which publishes the type definition repository DefinitelyTyped to NPM, and dtslint, which tests type definitions and standardizes the structure of definition packages. \\
+	Worked on the .NET core garbage collector. Wrote a program to run tests, collect traces, analyze the trace in-depth, collect metrics, and report metric values as tables and graphs. \\
+	Used TypeScript, C++, C\Sharp, and Python.
+
+	\tit{FaunaDB}, San Francisco, CA \enspace \emph{Associate Software Engineer} \hfill \textsf{Jun 2015-Jan 2016} \\
+	Helped write libraries for using a new database for Python, Ruby, JavaScript, and C\Sharp. Each included a REST client, error handling, (de)serialization, query language, and ORM.
+	
+	\tit{IntentSoft}, Bellevue, WA \enspace \emph{Software Analyst and Developer} \hfill \textsf{Jul 2014-Mar 2015} \\
+	Worked on a content layout system in C\Sharp which took as input a tree of content nodes (analogous to DOM nodes) and output a tree of graphical nodes (which have exact locations). \\
+	Rewrote part of system that queried content locations to be closer to purely functional.
+
+\sex{school}
+	\tit{Rensselaer Polytechnic Institute}, Troy, NY \hfill \textsf{GPA 3.94/4.0 \quad 2012-2014} \\
+	Studied Computer Science. Included: parallel programming, computational physics, language-endowed intelligent agents, advanced computer graphics, intermediate logic.
+	
+	\tit{Digipen Institute of Technology}, Redmond, WA \hfill \textsf{GPA 3.49/4.0 \quad 2011-2012} \\
+	Responsible for programming, sound, and some graphics on a team of 3. Used ProjectFUN.
+
+\sex{code}
+	\begin{noindlist}
+%%	\item \tit{compiler/interpreter experiments} \hfill \textsf{2017-} \\
+%%	Compiler/interpreter written in Rust. Fully type-checked. Unfinished.
+	
+	\item \tit{noze} \enspace \small{programming language} \enspace \url{github.com/andy-hanson/noze} \hfill \textsf{2018-} \\
+	Statically-typed programming language compiling to C.
+	Features: modules, records, (discriminated) unions, (asynchronous) interfaces, lambdas, templates, overloading, type argument inference.
+	Has "specs", a feature for calling functions that aren't available yet.
+	Runtime can be written in noze itself.
+	Compiler can evaluate constants and specialize functions on constants and known lambda bodies.	
+	
+	\item \tit{tslint} \enspace \small{linter} \hfill \textsf{2016-2018} \\
+	Contributed many new lint rules to this project and made older rules simpler and more performant.
+	
+	\item \tit{mason} \enspace \small{programming language} \hfill \textsf{2014-2016} \\
+	Made a dynamic language compiling to JavaScript. Featured dynamic type checking, collection builders, async for, pattern matching, polymorphic functions, traits, a standard library with dynamically generated types (such as records and predicate types). Wrote several web games in mason.
+	
+	\item \tit{dum} \enspace \small{build system} \hfill \textsf{2015-2016} \\
+	Made a build system that transforms file-by-file using jstransformers, no build script or plugins necessary.
+
+	\item \tit{painterly rendering} \enspace \small{WebGL rendering experiment} \hfill \textsf{spring 2014} \\
+	Team of 2. Real-time WebGL renders a 3D particle system of brush stroke sprites which orient and curve along edges of objects and around centers of light using a custom shader.
+
+	\item \tit{logic online} \enspace \small{online logic practice} \hfill \textsf{spring 2014} \\
+	Created a deduction language. Inference and equality rules are asserted or proved within the language. 
+
+	\item \tit{polo jeans} \enspace \small{WebGL 2D game engine} \hfill \textsf{fall 2013} \\
+	Lead a team of 4. Ran meetings and designed architecture, game logic, and assets. Game was pong.
+	
+	\item \tit{LEIA} \enspace \small{natural language dependency grammar parser} \hfill \textsf{fall 2013} \\
+	Wrote parser on team of 6. Users write English sentences to ask for information about local food.
+
+	\item \tit{ghost control} \enspace \small{control systems research video game} \hfill \textsf{summer 2013} \\
+	Working for control systems researchers, created a web game that saves/loads ghost data from server.
+
+	\item \tit{wahoo} \enspace \small{Scala 2D game engine} \hfill \textsf{fall 2012} \hfill \\
+	Created a game engine on top of LWJGL. Features: dynamic lighting, loose quadtree collision detection, and type-based (via reflection), state-based GameObject scripting.
+
+	\item \tit{games} \hfill \textsf{2009-2013} \\
+	Web games and desktop games. Many 2D PyGame games, and one game in OpenGL and one in OGRE, both with PyGame as a base. Unfinished game written with Wahoo.	
+
+	\end{noindlist}
+
+\end{resume}
+\end{document}
